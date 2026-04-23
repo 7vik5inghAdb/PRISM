@@ -1,0 +1,56 @@
+# PRISM-v0 run config: Adobe Express — US-English → Japanese culturalization A/B test
+run_id: express_jp_001
+
+market:
+  source_locale: en-US
+  target_locale: ja-JP
+  country: Japan
+
+product_context:
+  application: Adobe Express
+  product_unit: Digital Assets
+  feature: Culturalization
+  asset_type: promotional_poster
+  use_case: >
+    SMB and consumer users in Japan creating promotional posters for
+    small business marketing (local events, storefront promotions, seasonal sales).
+
+objective: >
+  Decide whether the Japan-localized variant (Variant B) is a culturally appropriate
+  substitute for the US-English control (Variant A) when shown to Japanese SMB users.
+  Output: pass / fail / needs-revision, with reasoning.
+
+variants:
+  - id: A
+    label: US-English control
+    path: assets/base.png
+  - id: B
+    label: Japan-localized candidate
+    path: assets/l4.png
+
+# Optional additional variants available in assets/ (uncomment to include):
+# - id: C
+#   label: Japan variant 2
+#   path: assets/Screenshot 2026-04-20 at 10.07.40 AM.png
+# - id: D
+#   label: Japan variant 3
+#   path: assets/Screenshot 2026-04-20 at 10.07.46 AM.png
+
+panel:
+  size: 12
+  diversity_axes:
+    - age_band        # 20s, 30s, 40s, 50s+
+    - gender
+    - region          # Tokyo, Osaka, regional
+    - occupation      # SMB owner, marketer, freelance creative
+    - tech_comfort    # high, medium, low
+
+pass_criteria:
+  min_preference_for_B: 0.40     # fraction of panel preferring the localized variant
+  max_cultural_red_flags: 1      # hard issues raised across panel
+
+models:
+  persona: claude-haiku-4-5
+  instrument: claude-haiku-4-5
+  panel: claude-haiku-4-5
+  aggregator: claude-haiku-4-5
