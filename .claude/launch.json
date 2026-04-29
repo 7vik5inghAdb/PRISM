@@ -6,6 +6,16 @@
       "runtimeExecutable": "/Users/satviks/Library/Python/3.9/bin/streamlit",
       "runtimeArgs": ["run", "app.py", "--server.headless", "true", "--server.port", "8599", "--browser.gatherUsageStats", "false"],
       "port": 8599
+    },
+    {
+      "name": "prism-v1",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": [
+        "-C",
+        "/Users/satviks/Desktop/PRISM-v0/.claude/worktrees/hopeful-yonath-372783/prism/prism-v1",
+        "dev"
+      ],
+      "port": 3000
     }
   ]
 }
