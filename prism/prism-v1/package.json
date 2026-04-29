@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@ai-sdk/anthropic": "^3.0.72",
+    "@ai-sdk/react": "^3.0.171",
     "@base-ui/react": "^1.4.1",
     "ai": "^6.0.169",
     "class-variance-authority": "^0.7.1",
