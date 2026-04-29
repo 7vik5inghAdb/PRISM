@@ -1,11 +1,10 @@
-import { anthropic } from "@ai-sdk/anthropic";
 import {
   convertToModelMessages,
   createUIMessageStream,
   createUIMessageStreamResponse,
-  streamText,
   type UIMessage,
 } from "ai";
+import { runOrchestrator } from "@/lib/ai/orchestrator";
 import { type PrismUIMessage } from "@/lib/ai/ui-message";
 import { persistMessages } from "@/lib/db/runs";
 
@@ -37,8 +36,7 @@ export async function POST(req: Request) {
     return createUIMessageStreamResponse({ stream });
   }
 
-  const result = streamText({
-    model: anthropic("claude-opus-4-7"),
+  const result = runOrchestrator({
     messages: await convertToModelMessages(originalMessages),
   });
   return result.toUIMessageStreamResponse<PrismUIMessage>({
